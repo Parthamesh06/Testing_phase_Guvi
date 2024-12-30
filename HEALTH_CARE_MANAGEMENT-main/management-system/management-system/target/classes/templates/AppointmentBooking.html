@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="assets/gu-favicon.png" type="image/x-icon">
+    <title>Galgotias Hospital</title>
+    <style>
+        /* Style for the circular button */
+        .circle-button {
+            background-color: #007bff;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .circle-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Style for the navigation bar */
+        .navbar {
+            position: fixed;
+            bottom: calc(20px + 60px + 10px);
+            right: calc(20px + 60px + 10px);
+            z-index: 9998;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            display: none;
+            /* Initially hidden */
+        }
+
+        .navbar a {
+            display: block;
+            padding: 5px;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+        }
+
+        #message {
+            display: none;
+            color: green;
+            font-size: 18px;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto';
+        }
+
+        .head-nav {
+            position: absolute;
+            top: 0;
+            padding: 3rem;
+            z-index: 5;
+        }
+
+        .icon-and-button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 85vw;
+        }
+
+        .background {
+            position: absolute;
+            z-index: -1;
+        }
+
+        .background img {
+            object-fit: cover;
+        }
+
+        .top-section {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100vh;
+            color: #000;
+            background-color: #35434588;
+
+        }
+
+        .middle-section {
+            min-height: 50vh;
+            background-color: #fff;
+        }
+
+        .rounded-button {
+            width: 60px;
+            height: 60px;
+            color: #000;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 50%;
+            border: #000;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .rounded-button:hover {
+            background: #F2613F;
+        }
+
+        .icon1 {
+            position: absolute;
+            left: 30vb;
+        }
+
+        .icon3 {
+            position: absolute;
+            right: 30vb;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10%;
+            width: 100%;
+        }
+
+        .details>h2 {
+            font-size: 1.5rem;
+            color: #343a4088;
+            font-weight: 700;
+        }
+
+        .details>h1 {
+            font-weight: 700;
+            font-size: 3rem;
+            color: whitesmoke;
+            width: 70%;
+        }
+
+        .form-container {
+            /* background-color: #17a2b8;
+            z-index: 10; */
+            width: 650px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, .2);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+            color: #000;
+            border-radius: 10px;
+            padding: 25px 35px;
+        }
+
+        .wave-container {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            /* Positioned at the bottom of the section */
+            left: 0;
+        }
+
+        .Bottom-text {
+            bottom: 0%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <!-- Navbar -->
+        <nav class="head-nav">
+            <div class="container-fluid icon-and-button">
+                <a class="navbar-brand" href="https://www.galgotiasuniversity.edu.in/">
+                    <img src="images/logo-gu.png" width="300px" alt="">
+                </a>
+
+                <button class="btn btn-warning text-white shadow">
+                    <img src="images/phone-volume-solid.svg" width="20px" style="color:white" alt="">
+                    &nbsp; +91 8969660365
+                </button>
+
+                <!-- Circular button -->
+                <div class="navbar" id="navbar">
+                    <nav>
+                        <ul>
+                            <a href="/">Home</a>
+                            <a href="/about">About Us</a>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Top Section or Header -->
+        <section class="top-section">
+            <div class="header">
+                <div class="details">
+                    <h2>The Galgotias World of Care</h2>
+                    <h1>Search Your Doctor, Make an appointment</h1>
+                    <p>The best of modern healthcare to ensure you stay healthy, always.</p>
+                </div>
+                <form class=" form-container row g-3 needs-validation" novalidate>
+                    <div class="col-md-4">
+                        <label for="validationCustom01" class="form-label">First name</label>
+                        <input type="text" class="form-control" id="validationCustom01"
+                            placeholder="Enter your first name" onclick="this.value=''" pattern="[A-Za-z]+"
+                            title="Only alphabets are allowed" required>
+                        <div class="invalid-feedback">
+                            Enter a valid first name (only alphabets).
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationCustom02" class="form-label">Last name</label>
+                        <input type="text" class="form-control" id="validationCustom02"
+                            placeholder="Enter your last name" onclick="this.value=''" pattern="[A-Za-z]+"
+                            title="Only alphabets are allowed" required>
+                        <div class="invalid-feedback">
+                            Enter a valid last name (only alphabets).
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationCustomUsername" class="form-label">Username</label>
+                        <div class="input-group has-validation">
+                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                            <input type="text" class="form-control" id="validationCustomUsername"
+                                aria-describedby="inputGroupPrepend" required onblur="checkUsername(this.value)">
+                            <div class="invalid-feedback" id="usernameFeedback">
+                                Please choose a username.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom05" class="form-label">Zip</label>
+                        <input type="text" class="form-control" id="validationCustom05" pattern="^\d{6}$" required>
+                        <div class="invalid-feedback">
+                            Zip code must be a 6-digit number.
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom04" class="form-label">State</label>
+                        <select class="form-select" id="validationCustom04" required>
+                            <option selected disabled value="">Choose...</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Chandigarh">Chandigarh</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Chattisgarh">Chattisgarh</option>
+                            <option value="UttarPradesh">Uttar Pradesh</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="WestBengal">West Bengal</option>
+                            <option value="HimachalPradesh">Himachal Pradesh</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Andhrapradesh">Andhra Pradesh</option>
+                            <option value="MadhyaPradesh">Madhya Pradesh</option>
+                            <option value="TamilNadu">Tamil Nadu</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Odisha">Odisha</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a valid state.
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                            <label class="form-check-label" for="invalidCheck">
+                                Agree to terms and conditions
+                            </label>
+                            <div class="invalid-feedback">
+                                You must agree before submitting.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary" type="submit">Submit form</button>
+                    </div>
+                </form>
+                <!-- <form id="myForm" action="/make_an_appointment" method="POST"
+                    class="form-container py-4 px-5 rounded-2 shadow">
+                    <h2 class="fs-4">Make an appointment</h2>
+                    <div class="mb-3">
+                        <input type="text" name="name" placeholder="Name" class="form-control" id="patient-name"
+                            required>
+                    </div>
+                    <select class="form-select" name="location">
+                        <option value="Delhi">Delhi</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Chattisgarh">Chattisgarh</option>
+                        <option value="UttarPradesh" selected>UttarPradesh</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="WestBengal">WestBengal</option>
+                        <option value="HimachalPradesh">HimachalPradesh</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Andhrapradesh">Andhrapradesh</option>
+                        <option value="MadhyaPradesh">MadhyaPradesh</option>
+                        <option value="TamilNadu">TamilNadu</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Odisha">Odisha</option>
+                    </select>
+                    <div class="my-3">
+                        <input type="number" class="form-control" id="mobile-number" name="mobile" placeholder="Mobile"
+                            required>
+                    </div>
+                    <button class="btn btn-warning text-white">Book an appointment</button>
+                </form> -->
+            </div>
+
+            <!-- Bootstrap carousel -->
+            <div id="carouselExampleSlidesOnly" class="carousel slide background" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="images/firstImage.jpg" class="d-block w-100" alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/firstImage2.jpg" class="d-block w-100" alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/firstImage3.jpg" class="d-block w-100" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wave Container -->
+
+        </section>
+    </div>
+    <footer class="Bottom-text text-center py-3 bg-light">
+        <p>&copy; 2024 Galgotias Hospital | All Rights Reserved</p>
+    </footer>
+
+    <!-- <script>
+        // Custom Bootstrap validation
+        (function () {
+            'use strict';
+    
+            window.addEventListener('load', function () {
+                // Fetch all the forms
+                var forms = document.getElementsByClassName('needs-validation');
+    
+                // Loop over them and prevent submission if invalid
+                Array.prototype.forEach.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+    
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script> -->
+    <script>
+        // Enabling Bootstrap validation styles
+        (function () {
+            'use strict';
+
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+                Array.prototype.forEach.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+    <script>
+        function checkUsername(username) {
+            if (username.trim() === "") {
+                setFeedback("usernameFeedback", "Username cannot be empty.", false);
+                return;
+            }
+
+            // Example AJAX request
+            fetch('/check-username', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: username })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.isUnique) {
+                        setFeedback("usernameFeedback", "Username is available.", true);
+                    } else {
+                        setFeedback("usernameFeedback", "Username is already taken.", false);
+                    }
+                })
+                .catch(error => {
+                    setFeedback("usernameFeedback", "An error occurred. Please try again.", false);
+                });
+        }
+
+        function setFeedback(feedbackId, message, isValid) {
+            const feedbackElement = document.getElementById(feedbackId);
+            feedbackElement.textContent = message;
+            feedbackElement.style.display = "block";
+            const inputElement = feedbackElement.previousElementSibling;
+            inputElement.classList.toggle("is-invalid", !isValid);
+            inputElement.classList.toggle("is-valid", isValid);
+        }
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-QV2U69jO0+L6D4QQlMkN2R2v5aNE/yoYf7gfT3OVGmR5q6R5ZpSPxy4hD8NiIXA5" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-pzjw8f+ua7Kw1TIq6Y2J43tn+gy+7+8U5Q3E3S01V9C+2d3/Vwz0bm1h4Okjfo0I" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
